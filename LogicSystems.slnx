@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="LogicSystems.Business/LogicSystems.Business.csproj" />
+  <Project Path="LogicSystems.Core/LogicSystems.Core.csproj" />
+  <Project Path="LogicSystems.Data/LogicSystems.Data.csproj" />
+  <Project Path="LogicSystems/LogicSystems.csproj" />
+</Solution>
