@@ -1,6 +1,6 @@
 <Solution>
   <Project Path="LogicSystems.Business/LogicSystems.Business.csproj" />
+  <Project Path="LogicSystems.ConsoleUI/LogicSystems.ConsoleUI.csproj" Id="c3358d78-6fc6-4eed-a6a2-62eb7fb1c6c8" />
   <Project Path="LogicSystems.Core/LogicSystems.Core.csproj" />
   <Project Path="LogicSystems.Data/LogicSystems.Data.csproj" />
-  <Project Path="LogicSystems/LogicSystems.csproj" />
 </Solution>
