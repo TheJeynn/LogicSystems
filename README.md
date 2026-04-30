@@ -88,9 +88,9 @@ ConsoleUI → Business → Core → Data
 ---
 
 ## ▶️ How to Run
-
+```
 git clone https://github.com/your-username/LogicSystems.git
-
+```
 Open the solution in Visual Studio  
 Set ConsoleUI project as Startup Project  
 
@@ -98,12 +98,13 @@ Build:
 Build → Rebuild Solution
 
 Run:
+```
 Ctrl + F5
-
+```
 ---
 
 ## 🖥️ Sample Output
-
+```
 ===================================
      LOGIC SYSTEMS APPLICATION
 ===================================
@@ -112,11 +113,11 @@ Ctrl + F5
 2 - Order
 3 - Cargo
 0 - Exit
-
+```
 ---
 
 ## 📂 Project Structure
-
+```
 LogicSystems
 │
 ├── LogicSystems.ConsoleUI
@@ -141,7 +142,7 @@ LogicSystems
 ├── LogicSystems.Data
 │   ├── Logger.cs
 │   └── ProductRepository.cs
-
+```
 ---
 
 ## 🧠 Key Learnings
