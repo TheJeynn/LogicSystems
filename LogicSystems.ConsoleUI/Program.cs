@@ -96,6 +96,7 @@ namespace LogicSystems
             Pause();
         }
 
+
         static void HandleCargo()
         {
             Console.Clear();
@@ -140,6 +141,7 @@ namespace LogicSystems
             Console.WriteLine("     LOGIC SYSTEMS APPLICATION     ");
             Console.WriteLine("===================================\n");
         }
+
 
         static void Pause()
         {
