@@ -65,7 +65,7 @@ namespace LogicSystems
             Console.WriteLine("2 - Bank Transfer");
 
             Console.Write("\nSelect Payment Method: ");
-            var choice = Console.ReadLine();
+            var choice = Console.ReadLine() ?? "";
 
             try
             {
@@ -128,7 +128,7 @@ namespace LogicSystems
             Console.WriteLine("1 - Aras");
             Console.WriteLine("2 - Yurtiçi");
             Console.Write("\nSelect Cargo Company: ");
-            var cargoChoice = Console.ReadLine();
+            var cargoChoice = Console.ReadLine() ?? "";
 
             try
             {
