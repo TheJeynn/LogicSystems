@@ -112,6 +112,7 @@ Ctrl + F5
 1 - Payment
 2 - Order
 3 - Cargo
+4 - Products
 0 - Exit
 ```
 ---
