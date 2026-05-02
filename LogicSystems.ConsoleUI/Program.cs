@@ -20,6 +20,7 @@ namespace LogicSystems
                 Console.WriteLine("1 - Payment");
                 Console.WriteLine("2 - Order");
                 Console.WriteLine("3 - Cargo");
+                Console.WriteLine("4 - Products");
                 Console.WriteLine("0 - Exit");
 
                 Console.Write("\nSelect Operation: ");
@@ -37,6 +38,10 @@ namespace LogicSystems
 
                     case "3":
                         HandleCargo();
+                        break;
+
+                    case "4":
+                        HandleProducts();
                         break;
 
                     case "0":
@@ -96,7 +101,24 @@ namespace LogicSystems
             Pause();
         }
 
+        static void HandleProducts()
+        {
+            Console.Clear();
+            PrintHeader();
 
+            Console.WriteLine("PRODUCT LIST\n");
+
+            var repo = new ProductRepository();
+            var products = repo.GetAll();
+
+            foreach (var product in products)
+            {
+                product.Display();
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
         static void HandleCargo()
         {
             Console.Clear();
@@ -105,7 +127,6 @@ namespace LogicSystems
             Console.WriteLine("CARGO SERVICE");
             Console.WriteLine("1 - Aras");
             Console.WriteLine("2 - Yurtiçi");
-
             Console.Write("\nSelect Cargo Company: ");
             var cargoChoice = Console.ReadLine();
 
