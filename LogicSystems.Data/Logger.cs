@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace LogicSystems.Data
 {
@@ -26,7 +27,11 @@ namespace LogicSystems.Data
 
         public void Log(string message)
         {
-            Console.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [INFO] {message}");
+            string log = $"{DateTime.Now}: {message}";
+
+            Console.WriteLine(log);
+
+            File.AppendAllText("logs.txt", log + Environment.NewLine);
         }
 
         public void Error(string message)

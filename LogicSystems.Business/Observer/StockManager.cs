@@ -6,12 +6,20 @@ namespace LogicSystems.Business.Observer
 {
     internal class StockManager
     {
-        private List<IObserver> observers = new List<IObserver>();
+        private List<IObserver> observers = new();
         private int stock;
 
         public void AddObserver(IObserver observer)
         {
             observers.Add(observer);
+        }
+
+        public void NotifyObservers(string message)
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update(message);
+            }
         }
 
         public void SetStock(int value)
@@ -20,8 +28,7 @@ namespace LogicSystems.Business.Observer
 
             if (stock < 10)
             {
-                foreach (var obs in observers)
-                    obs.Update("Stock is low!");
+                NotifyObservers("Stock is low!");
             }
         }
     }

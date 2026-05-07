@@ -8,5 +8,6 @@ namespace LogicSystems.Business.States
     {
         void Next(OrderContext context);
         void Cancel(OrderContext context);
+
     }
 }

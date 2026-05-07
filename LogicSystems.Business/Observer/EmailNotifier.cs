@@ -8,7 +8,7 @@ namespace LogicSystems.Business.Observer
     {
         public void Update(string message)
         {
-            Console.WriteLine($"Email sent: {message}");
+            Console.WriteLine("EMAIL: " + message);
         }
     }
 }

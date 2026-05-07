@@ -3,4 +3,5 @@
   <Project Path="LogicSystems.ConsoleUI/LogicSystems.ConsoleUI.csproj" Id="c3358d78-6fc6-4eed-a6a2-62eb7fb1c6c8" />
   <Project Path="LogicSystems.Core/LogicSystems.Core.csproj" />
   <Project Path="LogicSystems.Data/LogicSystems.Data.csproj" />
+  <Project Path="LogicSystems.Tests/LogicSystems.Tests.csproj" Id="41c070f0-140d-424c-971e-2ddb3aaca248" />
 </Solution>
