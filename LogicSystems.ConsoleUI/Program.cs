@@ -87,14 +87,20 @@ namespace LogicSystems
             Console.Clear();
             PrintHeader();
 
-            Console.WriteLine("ORDER PROCESS");
+            Console.WriteLine("ORDER PROCESS\n");
 
             var order = new OrderContext(new PendingState());
 
+            Console.WriteLine("Current State: Pending");
+
             order.Next();
+            Console.WriteLine("Order Approved");
+
             order.Next();
+            Console.WriteLine("Order Shipped");
+
             order.Next();
-            order.Cancel();
+            Console.WriteLine("Order Delivered");
 
             Logger.GetInstance().Log("Order processed");
 
