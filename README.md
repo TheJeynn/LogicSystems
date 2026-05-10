@@ -92,6 +92,14 @@ ConsoleUI → Business → Core
 
 ---
 
+## 📄 Report
+
+Project report:
+
+[LogicSystems_Report.pdf](docs/NESNE YÖNELİMLİ ANALİZ VE TASARIM PROJESİ.pdf.pdf)
+
+---
+
 ## ▶️ How to Run
 ```
 git clone https://github.com/your-username/LogicSystems.git
