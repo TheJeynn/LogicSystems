@@ -15,8 +15,9 @@ It showcases best practices in software design by applying several **design patt
 
 The project follows a **Layered Architecture**:
 
-ConsoleUI → Business → Core → Data
-
+ConsoleUI → Business → Core
+                     ↓
+                    Data
 ### 🔹 Layers
 
 - **ConsoleUI**
@@ -32,7 +33,11 @@ ConsoleUI → Business → Core → Data
 
 - **Data**
   - Handles data-related operations (Logger, Repository)
-
+    
+- **Tests**
+  - Payment factory behavior
+  - State transitions
+  - Shipping decorators and adapters
 ---
 
 ## 🎯 Implemented Design Patterns
@@ -144,6 +149,77 @@ LogicSystems
 │   ├── Logger.cs
 │   └── ProductRepository.cs
 ```
+
+---
+
+## State Diagram
+
+```mermaid
+stateDiagram-v2
+    [*] --> Pending
+    Pending --> Approved
+    Approved --> Preparing
+    Preparing --> Shipped
+    Shipped --> Delivered
+    Shipped --> Returned
+```
+
+---
+
+## Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    User->>Program: Select Payment
+    Program->>PaymentFactory: CreatePayment()
+    PaymentFactory-->>Program: Payment Object
+    Program->>IPaymentStrategy: Pay(1000)
+```
+---
+
+## Use Case Diagram
+
+```mermaid
+flowchart LR
+
+Customer --> Payment
+Customer --> Order
+Customer --> Cargo
+
+Admin --> ProductManagement
+Admin --> Logging
+
+Personnel --> ShippingManagement
+```
+---
+
+## Activity Diagram
+
+```mermaid
+flowchart TD
+
+Start --> SelectOperation
+SelectOperation --> Payment
+SelectOperation --> Cargo
+SelectOperation --> Order
+
+Payment --> End
+Cargo --> End
+Order --> End
+```
+---
+
+## 🧱 SOLID Principles
+
+The project follows several SOLID principles:
+
+- Single Responsibility Principle
+- Open/Closed Principle
+- Dependency Inversion Principle
+
+Example:
+Shipping adapters depend on the abstraction `IShippingService`
+instead of concrete implementations.
 ---
 
 ## 🧠 Key Learnings
@@ -159,6 +235,8 @@ LogicSystems
 
 - The original console project was removed and recreated to resolve configuration and startup issues.
 - All layers were converted into class libraries except the console application.
+- Supports both simple and complex products
+- File-based logging system
 
 ---
 
