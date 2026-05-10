@@ -1,10 +1,11 @@
-﻿using System;
-using LogicSystems.Business;
+﻿using LogicSystems.Business;
 using LogicSystems.Business.Factories;
 using LogicSystems.Business.Shipping;
 using LogicSystems.Business.Shipping.Decorators;
 using LogicSystems.Business.States;
+using LogicSystems.Core;
 using LogicSystems.Data;
+using System;
 
 namespace LogicSystems
 {
@@ -12,6 +13,15 @@ namespace LogicSystems
     {
         public static void Main(string[] args)
         {
+
+            var currentUser = new User
+            {
+                Id = 1,
+                Name = "Burak",
+                Email = "burak@test.com",
+                Role = UserRole.Admin
+            };
+
             while (true)
             {
                 Console.Clear();

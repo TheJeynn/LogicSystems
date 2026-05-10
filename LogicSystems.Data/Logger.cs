@@ -3,40 +3,46 @@ using System.IO;
 
 namespace LogicSystems.Data
 {
-    public sealed class Logger
+    public class Logger
     {
         private static Logger? _instance;
-        private static readonly object _lock = new object();
+
+        private readonly string logFilePath = "log.txt";
 
         private Logger() { }
 
         public static Logger GetInstance()
         {
             if (_instance == null)
-            {
-                lock (_lock)
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new Logger();
-                    }
-                }
-            }
+                _instance = new Logger();
+
             return _instance;
         }
 
         public void Log(string message)
         {
-            string log = $"{DateTime.Now}: {message}";
+            string logMessage =
+                $"{DateTime.Now} - LOG: {message}";
 
-            Console.WriteLine(log);
+            Console.WriteLine(logMessage);
 
-            File.AppendAllText("logs.txt", log + Environment.NewLine);
+            File.AppendAllText(
+                logFilePath,
+                logMessage + Environment.NewLine
+            );
         }
 
         public void Error(string message)
         {
-            Console.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [ERROR] {message}");
+            string errorMessage =
+                $"{DateTime.Now} - ERROR: {message}";
+
+            Console.WriteLine(errorMessage);
+
+            File.AppendAllText(
+                logFilePath,
+                errorMessage + Environment.NewLine
+            );
         }
     }
 }
