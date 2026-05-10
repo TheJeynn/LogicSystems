@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LogicSystems.Business.Observer
 {
-    internal interface IObserver
+    public interface IObserver
     {
         void Update(string message);
     }

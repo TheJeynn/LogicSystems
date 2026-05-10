@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LogicSystems.Business.Observer
 {
-    internal class EmailNotifier : IObserver
+    public class EmailNotifier : IObserver
     {
         public void Update(string message)
         {

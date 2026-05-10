@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LogicSystems.Business.Observer
 {
-    internal class StockManager
+    public class StockManager
     {
         private List<IObserver> observers = new();
         private int stock;

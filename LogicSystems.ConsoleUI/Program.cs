@@ -1,6 +1,6 @@
 ﻿using LogicSystems.Business;
 using LogicSystems.Business.Factories;
-using LogicSystems.Business.Shipping;
+using LogicSystems.Business.Observer;
 using LogicSystems.Business.Shipping.Decorators;
 using LogicSystems.Business.States;
 using LogicSystems.Core;
@@ -13,7 +13,6 @@ namespace LogicSystems
     {
         public static void Main(string[] args)
         {
-
             var currentUser = new User
             {
                 Id = 1,
@@ -30,7 +29,13 @@ namespace LogicSystems
                 Console.WriteLine("1 - Payment");
                 Console.WriteLine("2 - Order");
                 Console.WriteLine("3 - Cargo");
-                Console.WriteLine("4 - Products");
+
+                if (currentUser.Role == UserRole.Admin)
+                {
+                    Console.WriteLine("4 - Products");
+                    Console.WriteLine("5 - Stock Test");
+                }
+
                 Console.WriteLine("0 - Exit");
 
                 Console.Write("\nSelect Operation: ");
@@ -51,7 +56,31 @@ namespace LogicSystems
                         break;
 
                     case "4":
-                        HandleProducts();
+
+                        if (currentUser.Role == UserRole.Admin)
+                        {
+                            HandleProducts();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Access denied!");
+                            Pause();
+                        }
+
+                        break;
+
+                    case "5":
+
+                        if (currentUser.Role == UserRole.Admin)
+                        {
+                            HandleStock();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Access denied!");
+                            Pause();
+                        }
+
                         break;
 
                     case "0":
@@ -80,6 +109,7 @@ namespace LogicSystems
             try
             {
                 var payment = PaymentFactory.CreatePayment(choice);
+
                 payment.Pay(1000);
 
                 Logger.GetInstance().Log("Payment completed");
@@ -107,12 +137,69 @@ namespace LogicSystems
             Console.WriteLine("Order Approved");
 
             order.Next();
+            Console.WriteLine("Order Preparing");
+
+            order.Next();
             Console.WriteLine("Order Shipped");
 
             order.Next();
             Console.WriteLine("Order Delivered");
 
             Logger.GetInstance().Log("Order processed");
+
+            Pause();
+        }
+
+        static void HandleCargo()
+        {
+            Console.Clear();
+            PrintHeader();
+
+            Console.WriteLine("CARGO SERVICE");
+            Console.WriteLine("1 - Aras");
+            Console.WriteLine("2 - Yurtiçi");
+            Console.WriteLine("3 - GlobalExpress");
+
+            Console.Write("\nSelect Cargo Company: ");
+
+            var cargoChoice = Console.ReadLine() ?? "";
+
+            try
+            {
+                var shipping = ShippingFactory.Create(cargoChoice);
+
+                Console.Write("Add Insurance? (y/n): ");
+
+                if (Console.ReadLine()?.ToLower() == "y")
+                {
+                    shipping = new InsuranceDecorator(shipping);
+                }
+
+                Console.Write("Add Fragile Protection? (y/n): ");
+
+                if (Console.ReadLine()?.ToLower() == "y")
+                {
+                    shipping = new FragileDecorator(shipping);
+                }
+
+                Console.WriteLine("\n--- Cargo Info ---");
+
+                Console.WriteLine(
+                    "Tracking: " +
+                    shipping.GenerateTrackingNumber()
+                );
+
+                Console.WriteLine(
+                    "Price: " +
+                    shipping.CalculatePrice(5)
+                );
+
+                Logger.GetInstance().Log("Cargo processed");
+            }
+            catch
+            {
+                Console.WriteLine("Invalid cargo selection!");
+            }
 
             Pause();
         }
@@ -125,6 +212,7 @@ namespace LogicSystems
             Console.WriteLine("PRODUCT LIST\n");
 
             var repo = new ProductRepository();
+
             var products = repo.GetAll();
 
             foreach (var product in products)
@@ -132,42 +220,27 @@ namespace LogicSystems
                 product.Display();
             }
 
-            Console.WriteLine("\nPress any key to continue...");
-            Console.ReadKey();
+            Pause();
         }
-        static void HandleCargo()
+
+        static void HandleStock()
         {
             Console.Clear();
             PrintHeader();
 
-            Console.WriteLine("CARGO SERVICE");
-            Console.WriteLine("1 - Aras");
-            Console.WriteLine("2 - Yurtiçi");
-            Console.Write("\nSelect Cargo Company: ");
-            var cargoChoice = Console.ReadLine() ?? "";
+            Console.WriteLine("STOCK NOTIFICATION TEST\n");
 
-            try
-            {
-                var shipping = ShippingFactory.Create(cargoChoice);
+            var stockManager = new StockManager();
 
-                Console.Write("Add Insurance? (y/n): ");
-                if (Console.ReadLine()?.ToLower() == "y")
-                    shipping = new InsuranceDecorator(shipping);
+            stockManager.AddObserver(
+                new EmailNotifier()
+            );
 
-                Console.Write("Add Fragile Protection? (y/n): ");
-                if (Console.ReadLine()?.ToLower() == "y")
-                    shipping = new FragileDecorator(shipping);
+            stockManager.SetStock(5);
 
-                Console.WriteLine("\n--- Cargo Info ---");
-                Console.WriteLine("Tracking: " + shipping.GenerateTrackingNumber());
-                Console.WriteLine("Price: " + shipping.CalculatePrice(5));
-
-                Logger.GetInstance().Log("Cargo processed");
-            }
-            catch
-            {
-                Console.WriteLine("Invalid cargo selection!");
-            }
+            Logger.GetInstance().Log(
+                "Stock notification triggered"
+            );
 
             Pause();
         }
@@ -178,7 +251,6 @@ namespace LogicSystems
             Console.WriteLine("     LOGIC SYSTEMS APPLICATION     ");
             Console.WriteLine("===================================\n");
         }
-
 
         static void Pause()
         {
