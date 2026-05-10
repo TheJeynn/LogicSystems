@@ -96,7 +96,7 @@ ConsoleUI → Business → Core
 
 Project report:
 
-[LogicSystems_Report.pdf](docs/LogicSystems_Report.pdf)
+[LogicSystems_Report.pdf](docs/NESNE YÖNELİMLİ ANALİZ VE TASARIM PROJESİ.pdf.pdf)
 
 ---
 
