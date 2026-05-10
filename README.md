@@ -145,6 +145,59 @@ LogicSystems
 │   └── ProductRepository.cs
 ```
 ---
+## State Diagram
+
+```mermaid
+stateDiagram-v2
+    [*] --> Pending
+    Pending --> Approved
+    Approved --> Preparing
+    Preparing --> Shipped
+    Shipped --> Delivered
+    Shipped --> Returned
+```
+---
+
+## Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    User->>Program: Select Payment
+    Program->>PaymentFactory: CreatePayment()
+    PaymentFactory-->>Program: Payment Object
+    Program->>IPaymentStrategy: Pay(1000)
+```
+---
+## Use Case Diagram
+
+```mermaid
+flowchart LR
+
+Customer --> Payment
+Customer --> Order
+Customer --> Cargo
+
+Admin --> ProductManagement
+Admin --> Logging
+
+Personnel --> ShippingManagement
+```
+---
+## Activity Diagram
+
+```mermaid
+flowchart TD
+
+Start --> SelectOperation
+SelectOperation --> Payment
+SelectOperation --> Cargo
+SelectOperation --> Order
+
+Payment --> End
+Cargo --> End
+Order --> End
+```
+---
 
 ## 🧠 Key Learnings
 
