@@ -15,8 +15,9 @@ It showcases best practices in software design by applying several **design patt
 
 The project follows a **Layered Architecture**:
 
-ConsoleUI → Business → Core → Data
-
+ConsoleUI → Business → Core
+                     ↓
+                    Data
 ### 🔹 Layers
 
 - **ConsoleUI**
@@ -32,7 +33,11 @@ ConsoleUI → Business → Core → Data
 
 - **Data**
   - Handles data-related operations (Logger, Repository)
-
+    
+- **Tests**
+  - Payment factory behavior
+  - State transitions
+  - Shipping decorators and adapters
 ---
 
 ## 🎯 Implemented Design Patterns
@@ -144,7 +149,9 @@ LogicSystems
 │   ├── Logger.cs
 │   └── ProductRepository.cs
 ```
+
 ---
+
 ## State Diagram
 
 ```mermaid
@@ -156,6 +163,7 @@ stateDiagram-v2
     Shipped --> Delivered
     Shipped --> Returned
 ```
+
 ---
 
 ## Sequence Diagram
@@ -168,6 +176,7 @@ sequenceDiagram
     Program->>IPaymentStrategy: Pay(1000)
 ```
 ---
+
 ## Use Case Diagram
 
 ```mermaid
@@ -183,6 +192,7 @@ Admin --> Logging
 Personnel --> ShippingManagement
 ```
 ---
+
 ## Activity Diagram
 
 ```mermaid
@@ -199,6 +209,19 @@ Order --> End
 ```
 ---
 
+## 🧱 SOLID Principles
+
+The project follows several SOLID principles:
+
+- Single Responsibility Principle
+- Open/Closed Principle
+- Dependency Inversion Principle
+
+Example:
+Shipping adapters depend on the abstraction `IShippingService`
+instead of concrete implementations.
+---
+
 ## 🧠 Key Learnings
 
 - Application of multiple design patterns in a real-world scenario  
@@ -212,6 +235,8 @@ Order --> End
 
 - The original console project was removed and recreated to resolve configuration and startup issues.
 - All layers were converted into class libraries except the console application.
+- Supports both simple and complex products
+- File-based logging system
 
 ---
 
