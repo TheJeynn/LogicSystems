@@ -96,7 +96,7 @@ ConsoleUI → Business → Core
 
 Project report:
 
-[LogicSystems_Report.pdf](docs/LogicSystems_Report.pdf)
+[LogicSystems_Report.docx](docs/LogicSystems_Report.docx)
 
 ---
 
