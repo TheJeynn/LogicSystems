@@ -7,9 +7,22 @@ namespace LogicSystems.Data
     {
         private static Logger? _instance;
 
-        private readonly string logFilePath = "log.txt";
+        private readonly string logFilePath;
 
-        private Logger() { }
+        private Logger()
+        {
+            // Get the base directory where the application runs
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string dataFilesDir = Path.Combine(baseDirectory, "DataFiles");
+
+            // Create DataFiles directory if it doesn't exist
+            if (!Directory.Exists(dataFilesDir))
+            {
+                Directory.CreateDirectory(dataFilesDir);
+            }
+
+            logFilePath = Path.Combine(dataFilesDir, "logs.txt");
+        }
 
         public static Logger GetInstance()
         {
@@ -26,10 +39,17 @@ namespace LogicSystems.Data
 
             Console.WriteLine(logMessage);
 
-            File.AppendAllText(
-                logFilePath,
-                logMessage + Environment.NewLine
-            );
+            try
+            {
+                File.AppendAllText(
+                    logFilePath,
+                    logMessage + Environment.NewLine
+                );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error writing to log file: {ex.Message}");
+            }
         }
 
         public void Error(string message)
@@ -39,10 +59,17 @@ namespace LogicSystems.Data
 
             Console.WriteLine(errorMessage);
 
-            File.AppendAllText(
-                logFilePath,
-                errorMessage + Environment.NewLine
-            );
+            try
+            {
+                File.AppendAllText(
+                    logFilePath,
+                    errorMessage + Environment.NewLine
+                );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error writing to log file: {ex.Message}");
+            }
         }
     }
 }

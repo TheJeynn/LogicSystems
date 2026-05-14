@@ -1,14 +1,17 @@
 ﻿using LogicSystems.Business.Shipping;
 
-public static class ShippingFactory
+namespace LogicSystems.Business.Factories
 {
-    public static IShippingService Create(string type)
+    public static class ShippingFactory
     {
-        return type switch
+        public static IShippingService Create(string type)
         {
-            "1" => new ArasAdapter(),
-            "2" => new YurtiçiAdapter(),
-            _ => throw new Exception("Invalid cargo type")
-        };
+            return type switch
+            {
+                "1" => new ArasAdapter(),
+                "2" => new YurtiçiAdapter(),
+                _ => throw new Exception("Invalid cargo type")
+            };
+        }
     }
 }

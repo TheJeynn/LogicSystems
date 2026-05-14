@@ -1,27 +1,40 @@
-﻿using LogicSystems.Business.States;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
-namespace LogicSystems.Business
+namespace LogicSystems.Business.States
 {
     public class OrderContext
     {
-        public IOrderState State { get; set; }
+        private IOrderState currentState;
 
-        public OrderContext(IOrderState state)
+        public OrderContext(IOrderState initialState)
         {
-            State = state;
+            currentState = initialState ?? throw new ArgumentNullException(nameof(initialState));
+        }
+
+        public IOrderState State
+        {
+            get => currentState;
+            set => SetState(value);
+        }
+
+        public void SetState(IOrderState state)
+        {
+            currentState = state ?? throw new ArgumentNullException(nameof(state));
         }
 
         public void Next()
         {
-            State.Next(this);
+            currentState.Next(this);
         }
 
         public void Cancel()
         {
-            State.Cancel(this);
+            currentState.Cancel(this);
+        }
+
+        public string GetStateName()
+        {
+            return currentState?.GetType().Name ?? string.Empty;
         }
     }
 }

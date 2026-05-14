@@ -10,12 +10,12 @@ namespace LogicSystems.Business.States
     {
         public void Next(OrderContext context)
         {
-            context.State = new ShippedState();
+            context.SetState(new ShippedState());
         }
 
         public void Cancel(OrderContext context)
         {
-            context.State = new ReturnedState();
+            context.SetState(new ReturnedState());
         }
     }
 }

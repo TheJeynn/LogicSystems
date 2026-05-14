@@ -1,39 +1,46 @@
-﻿using System;
+﻿using LogicSystems.Core;
 using System.Collections.Generic;
-using LogicSystems.Core;
+using System.IO;
 
 namespace LogicSystems.Data
 {
     public class ProductRepository
     {
-        private List<Product> _products = new List<Product>();
-
-        public ProductRepository()
-        {
-            // Fake data
-            _products.Add(new Product { Id = 1, Name = "Laptop", Price = 15000, Stock = 10 });
-            _products.Add(new Product { Id = 2, Name = "Phone", Price = 8000, Stock = 20 });
-        }
+        private readonly string filePath =
+            "DataFiles/products.txt";
 
         public List<Product> GetAll()
         {
-            return _products;
+            var products = new List<Product>();
+
+            if (!File.Exists(filePath))
+                return products;
+
+            var lines = File.ReadAllLines(filePath);
+
+            foreach (var line in lines)
+            {
+                var parts = line.Split(',');
+
+                products.Add(new Product
+                {
+                    Name = parts[0],
+                    Stock = int.Parse(parts[1])
+                });
+            }
+
+            return products;
         }
 
         public void Add(Product product)
         {
-            _products.Add(product);
-            Console.WriteLine("Product added.");
-        }
+            string line =
+                $"{product.Name},{product.Stock}";
 
-        public void UpdateStock(int productId, int newStock)
-        {
-            var product = _products.Find(p => p.Id == productId);
-            if (product != null)
-            {
-                product.Stock = newStock;
-                Console.WriteLine("Stock updated.");
-            }
+            File.AppendAllText(
+                filePath,
+                line + Environment.NewLine
+            );
         }
     }
 }

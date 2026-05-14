@@ -8,8 +8,8 @@ namespace LogicSystems.Business.Factories
         {
             return type switch
             {
-                "1" => new CreditCardPayment(),
-                "2" => new BankTransferPayment(),
+                "1" => new BankTransferPayment(),
+                "2" => new CreditCardPayment(),
                 _ => throw new Exception("Invalid payment type")
             };
         }

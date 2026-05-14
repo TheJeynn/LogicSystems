@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LogicSystems.Business
 {
-    internal class OrderService
+    public class OrderService
     {
     }
 }

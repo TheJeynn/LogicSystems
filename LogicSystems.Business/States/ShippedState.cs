@@ -9,7 +9,7 @@ namespace LogicSystems.Business.States
         public void Next(OrderContext context)
         {
             Console.WriteLine("Order delivered.");
-            context.State = new DeliveredState();
+            context.SetState(new DeliveredState());
         }
 
         public void Cancel(OrderContext context)

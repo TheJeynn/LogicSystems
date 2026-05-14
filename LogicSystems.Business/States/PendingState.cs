@@ -9,7 +9,7 @@ namespace LogicSystems.Business.States
         public void Next(OrderContext context)
         {
             Console.WriteLine("Order approved.");
-            context.State = new ApprovedState();
+            context.SetState(new ApprovedState());
         }
 
         public void Cancel(OrderContext context)
