@@ -156,11 +156,16 @@ Core (Models) + Data (Repository & Logging)
 
 ---
 
-## 📄 Report
+## 📚 Proje Raporları ve Dokümantasyon
 
-Project report:
+Ayrıntılı proje raporları `docs/` klasöründe bulunmaktadır:
 
-[LogicSystems_Report.docx](docs/LogicSystems_Report.docx)
+### Raporlar
+1. **[Kontrol Listesi](docs/00_KONTROL_LISTESI.md)** - Proje şartnamesine uygunluk kontrolü
+2. **[Analiz Raporu](docs/01_ANALIZ_RAPORU.md)** - Gereksinim analizi ve UML diyagramları
+3. **[Tasarım Raporu](docs/02_TASARIM_RAPORU.md)** - Tasarım desenleri detaylı analizi
+4. **[Test Raporu](docs/03_TEST_RAPORU.md)** - Birim testleri ve kod kapsama
+5. **[Proje Raporu](docs/LogicSystems_Report.docx)** - Detaylı DOCX raporu
 
 ### Prerequisites
 - .NET 10 SDK
